@@ -3,19 +3,31 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-
+const bodyParser = require('body-parser');
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+let recipeRouter = require('./routes/recipe');
 
 let app = express();
 let mongoose = require('mongoose');
+console.log('Mongoose version : ' + mongoose.version);
 
-
-// Moteur de template
+// Connexion à mongo
+mongoose.connect('mongodb://localhost/catalogue', {useNewUrlParser:true})
+    .then(
+        () => console.log('Connexion a mongo reussie !'),
+        (err) => {
+          throw new Error(err.message)
+        }
+    );
+console.log(mongoose.connection);
+app.use(express.static('public'));
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-//les middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,10 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/recettes', recipeRouter);
 
-console.log('Mongoose version : ' + mongoose.version);
-
-// Gestion des erreurs
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });

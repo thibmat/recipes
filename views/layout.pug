@@ -1,7 +1,18 @@
-doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title
+      block title
+    block stylesheets
+      link(rel="stylesheet" href="/css/bootstrap.min.css")
+      link(rel="stylesheet" href="/css/style.css")
+      link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet')
+
   body
-    block content
+    block navbar
+      include partials/navbar
+    block body
+    block footer
+      p= "Footer"
+    block javascripts
+      script(src="/js/jquery.js")
+      script(src="/js/bootstrap.bundle.min.js")

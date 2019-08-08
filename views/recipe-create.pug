@@ -1,0 +1,23 @@
+extends layout
+
+block body
+    main.container
+        h1 Ajout d'une recette
+
+        form(method="post")
+            .form-group
+                label(for='name') Nom
+                input#name.form-control(type='text', placeholder='Nom', name="name").form-group
+            .form-group
+                label(for='intro') Introduction
+                textarea#intro.form-control(rows='3', name="intro")
+            .form-group
+                label(for='nbIngredients') Nombre d'ingrédients
+                input#nbIngredients.form-control(type='number', name="nbIngredients").form-group
+            h3 Ingrédients de la recette
+            #ingredients
+            button.btn.btn-primary(type='submit') Créer
+
+
+block append javascripts
+    script(src="/js/form-onetomany.js")
