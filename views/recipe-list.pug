@@ -1,0 +1,25 @@
+extends layout
+
+block body
+    main.container
+        h1 Les recettes
+        table.table.table-bordered.table-dark
+            thead
+                tr
+                    th  Nom
+                    th  Description
+                    th  Nombre d'ingredients
+                    th  Ingredients
+                    th  Actions
+            tbody
+            each recipe in recipes
+                tr
+                    td
+                        a(href="/recettes/" + recipe.slug)= recipe.name
+                    td= recipe.intro
+                    td= recipe.nbIngredients
+                    td
+                        each ingredient in recipe.ingredients
+                            li= ingredient.name + ' : ' + ingredient.quantity + ' ' + ingredient.unit
+                    td
+                        include recipe-delete

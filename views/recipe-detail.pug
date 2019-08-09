@@ -1,0 +1,23 @@
+extends layout
+
+block body
+    main.container
+        h1 Les recettes
+        table.table.table-bordered.table-dark
+            thead
+                tr
+                th  Nom
+                th  Description
+                th  Nombre d'ingredients
+                th  Ingredients
+            tbody
+                tr
+                td= recipe.name
+                td= recipe.intro
+                td= recipe.nbIngredients
+                td
+                    each ingredient in recipe.ingredients
+                        if(ingredient.unit === 'unité')
+                            li= ingredient.quantity + ' ' + ingredient.name
+                        else
+                            li= ingredient.quantity + ' ' + ingredient.unit + ' de ' + ingredient.name

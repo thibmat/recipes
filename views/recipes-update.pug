@@ -1,8 +1,9 @@
 extends layout
 
 block body
+    - let update = true
     main.container
-        h1 Ajout d'une recette
+        h1= "Modification d'une recette : " + recipe.name
 
         include partials/form.pug
 

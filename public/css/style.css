@@ -8,6 +8,9 @@
 .form-signin input{
   margin-bottom: 10px;
 }
+.to-confirm{
+  display: inline-block;
+}
 .container-perso {max-width: 80%; margin:auto}
 .container{max-width:1170px; margin:auto;}
 img{ max-width:100%;}

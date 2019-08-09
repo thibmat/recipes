@@ -1,5 +1,9 @@
 extends layout
 
 block body
-  h1= title
-  p Welcome to #{title}
+  h1 Les dernières recettees
+  each recipe in recipes
+    .card
+      .card-body
+        h5.card-title= recipe.name
+        p.card-text= recipe.intro.substring(0,50)

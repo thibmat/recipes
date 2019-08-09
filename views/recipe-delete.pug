@@ -1,0 +1,3 @@
+form(action="/recettes/" + recipe.slug, method="post").to-confirm
+    input(type="hidden" name="_method" value="delete")
+    input(type="submit" value="supprimer").btn.btn-outline-danger
